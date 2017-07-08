@@ -1,6 +1,5 @@
 var request = require('supertest');
 var expect = require('expect');
-var fs = require('fs');
 
 var {app} = require('../index.js');
 
@@ -24,6 +23,10 @@ describe('Server', () => {
       request(app)
       .get(`/search/${query}`)
       .expect(200)
+      .expect((res) => {
+        expect(res.body.length).toBeLessThan(11);
+        expect(res.body[0]).toIncludeKeys(['url','snippet','thumbnail','context']);
+      })
       .end(done);
     });
   });

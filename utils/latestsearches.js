@@ -20,6 +20,7 @@ setLatestSearches = (obj) => {
   obj.latest_searches = uniqueEntries(obj.latest_searches);
   var data = JSON.stringify(obj, null, 4);
   fs.writeFileSync(file, data);
+  return obj;
 }
 
 uniqueEntries = (obj) => {
@@ -28,4 +29,4 @@ uniqueEntries = (obj) => {
   }).reverse();
 }
 
-module.exports = {getLatestSearches,setLatestSearches};
+module.exports = {getLatestSearches,setLatestSearches,uniqueEntries};
