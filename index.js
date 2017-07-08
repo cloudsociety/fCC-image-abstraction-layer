@@ -1,6 +1,5 @@
 require('./config/config.js');
 
-var _ = require('lodash');
 var express = require('express');
 const app = express();
 
@@ -10,11 +9,10 @@ app.use(express.static('public'));
 
 app.get('/search/:term', (req,res) => {
   var latestTerms = getLatestSearches();
+  var searchTerm = req.params.term;
 
-  console.log('current terms',latestTerms);
-  latestTerms.latest_searches.push(req.params.term);
+  latestTerms.latest_searches.push(searchTerm);
   setLatestSearches(latestTerms);
-  console.log('new terms',latestTerms);
 
   res.send('search works');
 });

@@ -17,8 +17,15 @@ getLatestSearches = () => {
 }
 
 setLatestSearches = (obj) => {
+  obj.latest_searches = uniqueEntries(obj.latest_searches);
   var data = JSON.stringify(obj, null, 4);
   fs.writeFileSync(file, data);
+}
+
+uniqueEntries = (obj) => {
+  return obj.reverse().filter(function(item,index,arr){
+    return arr.indexOf(item) == index;
+  }).reverse();
 }
 
 module.exports = {getLatestSearches,setLatestSearches};

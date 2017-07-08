@@ -1,7 +1,11 @@
 var request = require('supertest');
 var expect = require('expect');
+var fs = require('fs');
 
 var {app} = require('../index.js');
+
+var {populateLatest,seedData} = require('./seed.js');
+beforeEach(populateLatest);
 
 describe('Server', () => {
   describe('GET /', () => {
@@ -30,6 +34,10 @@ describe('Server', () => {
       request(app)
       .get('/latest')
       .expect(200)
+      .expect((res) => {
+        expect(res.body.latest_searches.length).toBe(4);
+        expect(res.body).toEqual(seedData);
+      })
       .end(done);
     });
   });
