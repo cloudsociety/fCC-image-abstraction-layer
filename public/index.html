@@ -2,9 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Image Abstraction Layer</title>
+  <title>fCC shortlink microservice</title>
+  <style>
+    body{
+      font: 1em Arial,sans-serif;
+    }
+
+    .wrapper {
+      max-width: 500px;
+      margin: auto; padding: 1rem;
+      border: 5px solid #ccc;
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    pre {
+      color: tomato;
+      background-color: #eee;
+      padding: .5rem;
+    }
+
+  </style>
 </head>
 <body>
-  <h1>You are here.</h1>
+  <div class="wrapper">
+    <h1 class="header">fCC Image Abstraction Layer</h1>
+    <blockquote>
+      <p>User stories:</p>
+      <ul>
+        <li>I can get the image URLs, alt text and page urls for a set of images relating to a given search string.</li>
+        <li>I can paginate through the responses by adding a ?offset=2 parameter to the URL.</li>
+        <li>I can get a list of the most recently submitted search strings.</li>
+      </ul>
+    </blockquote>
+    <h3>Example search usage:</h3>
+    <code><pre>https://dcross-image-abstraction-layer.herokuapp.com/search/fish</pre></code>
+    <h3>Will return:</h3>
+    <code><pre>[
+  {
+    "url":"https://i.ytimg.com/vi/TSqCoBhL2Hw/maxresdefault.jpg",
+    "snippet":"Boy Falling into Koi Fish Pond. - YouTube",
+    "thumbnail":"https://encrypted-tbn0.gstatic.com/images?
+    q=tbn:ANd9GcTeu1D7BFHCOGcDYxUa515iEhVMM2wU9gqvR-FyeD4dOV_hXeZAHArmEaA",
+    "context":"https://www.youtube.com/watch?v=TSqCoBhL2Hw"
+  },
+  {...}
+]</pre></code>
+    <h3>Example Latest searches usage:</h3>
+    <code><pre>http://dcross-image-abstraction-layer.herokuapp.com/latest</pre></code>
+    <h3>Will return:</h3>
+    <code><pre>{
+  "latest_searches":
+    [
+      "fish",
+      ...
+    ]
+}</pre></code>
+  </div>
 </body>
 </html>
